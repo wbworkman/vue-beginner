@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-text一般用于正常显示的标签input除外因为input内部能进行数据的交互只能用v-model 
+            v-text内部可以写函数可以写js的表达式
+        -->
+        <p v-text='msg'></p>
+        <p v-text='1+1'></p>
+        <p v-text=" '1' + 1"></p>
+        <!-- v-text写函数 -->
+        <p v-text='Math.random()'></p>
+        <p v-text='typeof JSON.stringify({a:1,b:2})'></p>
+        <p v-text='JSON.stringify({a:11,b:22})'></p>
+        <!-- v-text不能使用bom以及bom对象还有全局定义的属性也不能用不然会报错 -->
+        <!-- <p v-text='window.location.href'></p>  -->
+        <!-- <p v-text='alert(1)'></p> -->
+        <!-- 下面这种情况 会先在下面找有没有name属性没有就是NAN-->
+        <p v-text='name + 1'></p> 
+
+        <!-- 在vue中以v-开头的叫做指令 -->
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data : function () {
+                return {
+                    msg: 'v-text的应用'
+                }
+            }
+        })
+        vm.$mount('#app')
+    </script>
+</body>
+</html>

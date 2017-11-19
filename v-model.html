@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <!-- 必须得有一个渲染的区域 -->
+    <div id="app">
+         <input type="text" v-model='msg'>;
+    </div>
+    <!-- 第一步 先引包 -->
+    <script src="./vue.js"></script>
+    <script>
+        //第二步 创建实例化对象
+        var vm = new Vue({
+            data: function () {
+                return {
+                    msg: '理解vue是如何绑定数据的'
+                }
+            }
+        })
+        //3.$mount方法是需要告诉vue 渲染到哪部分区域参数是一个选择器
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

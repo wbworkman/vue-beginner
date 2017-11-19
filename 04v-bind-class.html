@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .size {
+            font-size: 20px;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:class='colorObj'>这是v-bind-class的应用</div>
+        <div v-bind:class='sex === 1'>逻辑判断无效</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: function () {
+                return {
+                    sex: 1,
+                    colorObj: {
+                        red: true,
+                        yellow: true,
+                        // size: false
+                        size: true
+                    }
+                }
+            }
+        })
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

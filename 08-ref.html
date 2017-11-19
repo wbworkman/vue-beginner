@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='msg'>
+        <!-- 通过ref可以获取到dom元素 它的作用就是起别名通过别名获取 -->
+        <button ref='btn'>{{msg}}</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data : function () {
+                return {
+                    msg: '你好'
+                }
+            },
+            //想要在vue对象中拿到dom元素需要在mounted方法里获取
+            mounted: function () {
+                const _this = this
+                setTimeout(function() {
+                    _this.$refs.btn.innerHTML = 'abcd';
+                }, 3000);
+            }
+        })
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

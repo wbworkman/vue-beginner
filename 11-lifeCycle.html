@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click='hello'>按钮</button>
+        <input type="text" v-model='msg'>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: function () {
+                return {
+                    msg: 'action'
+                }
+            },
+            methods: {
+                hello: function () {
+                    
+                }
+            },
+            //该方法是在实例化对象代理data,methods,computed等属性之前调用的方法
+            beforeCreate: function () {
+                console.log('beforeCreate');
+                console.log(this.msg);
+            },
+            //该方法是在beforeCreate方法调用之后的方法
+            //在这个方法里vm实例化对象已经对data,methods,computed等属性的内容进行了代理
+            created: function () {
+                console.log('created');
+                console.log(this.msg);
+            },
+            //程序执行的时候 其实是先从dom中获取vue语法规定的指令或者是{{}}
+            //这个时候是没有对其解析的
+            //vue加载完成后 会读取这些语法 进行解析之前调用下面这个方法
+            beforeMount: function () {
+                window.alert(111);
+                console.log('beforeMount');
+            },
+            //往界面上挂载之后会调用该方法
+            mounted: function () {
+                console.log('mounted');
+            },
+            //只要有数据的改变就会调用这个更新之前的方法
+            beforeUpdate: function () {
+                window.alert(111);
+                console.log('beforeUpdate');
+            },
+            //该方法是在更新之前调用完成后执行的方法
+            updated: function () {
+                console.log('updated');
+            },
+            //在当前数组被干掉之前 回执行以下这个方法
+            beforeDestroy:function () {
+                console.log('beforeDestroy');
+            },
+            //当当前组件被销毁之后调用下面这个方法
+            destroyed: function () {
+                console.log('destroyed');
+            }
+        })
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

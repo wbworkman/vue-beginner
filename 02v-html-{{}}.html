@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 如果内容中带有标签v-text不会解析
+            它只是指定元素的innerText为内容部分
+            v-html指定元素的innerHTML为元素的内容部分
+            只有html能解析
+        -->
+        <p v-text='name'></p>
+
+        <p v-html='name'></p>
+
+        <!-- 一下这种事插值表达式 相当于v-text 但是不能用于属性中
+            在渲染的坑中除了属性以外的地方都可以使用
+        -->
+        <p>{{msg}}</p>
+        <p>{{name}}</p>
+
+        {{msg}} <br>
+        {{name}}<br>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: function () {
+                return {
+                    msg: 'v-html的应用',
+                    name: '<h1>v-html</h1>'
+                }
+            }
+        })
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

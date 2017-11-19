@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul v-for='item in list'>
+            <li>{{item}}</li>
+        </ul>
+        <div v-for='(item,index) in list'>
+                <!-- index 不能写在首位 在后面-->
+                <p>{{item}}---{{index}}</p>
+            </div>
+        <ul>
+           <!-- 如果是对字符串v-for则结果是从字符串的第一位元素到最后一位元素 -->
+           <li v-for="item in 'abcdefg'">{{item}}</li>
+        </ul>
+        <ul>
+            <!-- 如果是一个数字则从第一位一直到该数字结束 -->
+            <li v-for='item in 10'>{{item}}</li>
+        </ul> 
+        <ul>
+            <!-- 也可以对 对象遍历 -->
+            <li v-for='item in user'>{{item}}</li>
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data : function () {
+                return {
+                    msg: 'v-for循环',
+                    list: ['狼厂','鹅厂','鸟厂','马厂'],
+                    user: {
+                        name: 'v-for',
+                        age: '2'
+                    }
+                }
+            }
+        })
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

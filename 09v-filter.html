@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{birthday | getAge}}
+        <!-- 管道可以无限的延长下去 但是返回的结果是最后一个管道过滤后的结果-->
+        <!-- {{birthday | getAge | getAge1}} -->
+        {{msg | upper}}
+        {{name | upperstr}}
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        //例: 公有过滤器
+        Vue.filter('upper',function (val) {
+            return val.toUpperCase();
+        })
+        var vm = new Vue({
+            data: function () {
+                return {
+                    birthday: '2000/12/7',
+                    msg: 'abcd',
+                    name: 'adffa'
+                }
+            },
+            //写在vm对象内部的过滤器称为私有过滤器 写在vm对象外部 就是公有过滤器
+            //filters是总的过滤器的集合 里面的每一个单独的过滤器
+            //需要给以下参数 参数一: 过滤器的名字 参数二: 过滤器的方法
+            filters : {
+                getAge: function (val) {
+                    var birth = new Date(val);
+                    console.log(birth);
+                    var birthYear = birth.getFullYear();
+                    console.log(birthYear);
+                    var now = new Date().getFullYear();
+                    console.log(now);
+                    return now-birthYear
+                },
+                // getAge1: function (val) {
+                //     var birth = new Date(val);
+                //     console.log(birth);
+                //     var birthYear = birth.getFullYear();
+                //     console.log(birthYear);
+                //     var now = new Date().getFullYear();
+                //     console.log(now);
+                //     return now-birthYear
+                // }
+                'upper': function (val) {
+                    return val.toUpperCase();
+                },
+                upperstr: function (val) {
+                    return val.toUpperCase();
+                }
+            }
+        })
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

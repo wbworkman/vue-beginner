@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p v-text='msg'></p>
+    <p v-text='name'></p>
+
+    <script>
+        function dataBind (options) {
+            var obj = options.data();
+            var ops = document.querySelectorAll('[v-text]');
+            // console.log(ops);
+            for(var i = 0; i < ops.length; i++) {
+                var op = ops[i];
+                var attrValue = op.getAttribute('v-text');
+                op.innerHTML = obj[attrValue];
+            }
+        }
+    </script>
+
+    <script>
+        var obj = {
+            msg: 'vue-数据绑定',
+            name: 'vue'
+        }
+        new dataBind ({
+            data: function () {
+                return obj
+            }
+        })
+    </script>
+</body>
+</html>

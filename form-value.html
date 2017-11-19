@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" v-model='msg'>
+    <input type="text" v-model='name'>
+    <script>
+        function dataBind (options) {
+            var obj = options.data();
+            
+            var oInpts = document.querySelectorAll('[v-model]');
+            for(var i = 0; i < oInpts.length; i++) {
+                var oInpt = oInpts[i];
+                var attrVal = oInpt.getAttribute('v-model');
+                // console.log(attrVal);
+                oInpt.value = obj[attrVal];
+            }
+        }
+    </script>
+    <script>
+        var obj = {
+            msg: 'vue-model绑定',
+            name: 'vue'
+        }
+        new dataBind ({
+            data : function () {
+                return obj
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form v-on:click='hello'>
+            <!-- <button v-on:click='hello'>按钮</button> -->
+            <!-- stop属性的作用就是阻止事件默认冒泡 并且它只是一个修饰符-->
+            <!-- <button v-on:click.stop='hello'>按钮</button> -->
+            <!-- v-on可以简写成@ -->
+            <button @click='hello'>按钮</button>
+        </form>
+    </div>
+    <script src='./vue.js'></script>
+    <script>
+        var vm = new Vue({
+            data : function () {
+                return {
+
+                }
+            },
+            methods: {
+                hello : function () {
+                    alert(1);
+                }
+            }
+        });
+        vm.$mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <input type="text" v-model='msg'>
+        <input type="text" v-model='name'>
+        <!-- 调用一下计算属性中的方法就能实现添加的后缀始终不变 -->
+        {{myMsg}}
+        {{myName}}
+    </div>
+    <script src='./vue.js'></script>
+    <script>
+        var vm = new Vue({
+            data : function () {
+                return {
+                    msg: '计算属性',
+                    name: 'computed'
+                }
+            },
+            //计算属性 参数一: 名称 参数二: 方法体
+            computed: {
+                //以下这个方法就是监听data里的msg值的变化 只要msg值有变化就会调用下面这个方法
+                //计算属性中可以添加方法也可以添加对象但是添加对象时一定要实现两个方法set和get
+                myMsg: function () {
+                    return this.msg + '.thema'
+                },
+                myName : {
+                    set: function (val) {
+                         this.name = val
+                    },
+                    get: function (val) {
+                        return this. name + '.thema'
+                    }
+                }
+            }
+        })
+        vm.$mount('#app');
+    </script>
+</body>
+</html>
